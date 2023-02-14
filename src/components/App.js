@@ -43,7 +43,7 @@ function App() {
       />
       <Footer />
       <PopupWithForm
-        offPopup={handleEditProfileClick}
+        onClose={handleEditProfileClick}
         isOpen={isEditProfilePopupOpen}
         title="Редактировать профиль"
         name="profile"
@@ -75,7 +75,7 @@ function App() {
         </button>
       </PopupWithForm>
       <PopupWithForm
-        offPopup={handleAddPlaceClick}
+        onClose={handleAddPlaceClick}
         isOpen={isAddPlacePopupOpen}
         title="Новое место"
         name="elements"
@@ -111,7 +111,7 @@ function App() {
         isOpen={isEditAvatarPopupOpen}
         title="Обновить аватар"
         name="avatar"
-        offPopup={handleEditAvatarClick}
+        onClose={handleEditAvatarClick}
       >
         <input
           name="linkAvatar"
@@ -129,7 +129,7 @@ function App() {
           Сохранить
         </button>
       </PopupWithForm>
-      <ImagePopup offPopup={() => handleCardClick({})} isOpen={selectedCard} />
+      <ImagePopup onClose={() => handleCardClick({})} isOpen={selectedCard} />
     </div>
   );
 }

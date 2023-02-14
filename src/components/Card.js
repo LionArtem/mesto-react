@@ -7,7 +7,7 @@ function Card(props) {
         onClick={() => onCardClick(card)}
         className="element__foto"
         src={card.link}
-        alt="замок"
+        alt={card.name}
       />
       <div className="element__signature">
         <p className="element__name-foto">{card.name}</p>
