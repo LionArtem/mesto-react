@@ -14,19 +14,10 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
 
-  const [selectedCard, setSelectedCard] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState({});
 
-  const [popupImagLink, setPopupImagLink] = React.useState('');
-
-  const [popupImagName, setPopupImagName] = React.useState('');
-
-  const handleCardClick = (link, name) => {
-    if (!selectedCard) {
-      setPopupImagName(name);
-      setPopupImagLink(link);
-      setSelectedCard(!selectedCard);
-    }
-    setSelectedCard(!selectedCard);
+  const handleCardClick = (card) => {
+    setSelectedCard(card);
   };
 
   const handleEditAvatarClick = () => {
@@ -48,12 +39,12 @@ function App() {
         onEditProfile={handleEditProfileClick}
         onAddPlace={handleAddPlaceClick}
         onEditAvatar={handleEditAvatarClick}
-        onCardClick={(link, name) => handleCardClick(link, name)}
+        onCardClick={(card) => handleCardClick(card)}
       />
       <Footer />
       <PopupWithForm
         offPopup={handleEditProfileClick}
-        isOpen={isEditProfilePopupOpen ? 'popup  popup_opened' : 'popup'}
+        isOpen={isEditProfilePopupOpen}
         title="Редактировать профиль"
         name="profile"
       >
@@ -85,9 +76,7 @@ function App() {
       </PopupWithForm>
       <PopupWithForm
         offPopup={handleAddPlaceClick}
-        isOpen={
-          isAddPlacePopupOpen ? 'popup popup_type_avatar popup_opened' : 'popup'
-        }
+        isOpen={isAddPlacePopupOpen}
         title="Новое место"
         name="elements"
       >
@@ -119,7 +108,7 @@ function App() {
         </button>
       </PopupWithForm>
       <PopupWithForm
-        isOpen={isEditAvatarPopupOpen ? 'popup popup_opened' : 'popup'}
+        isOpen={isEditAvatarPopupOpen}
         title="Обновить аватар"
         name="avatar"
         offPopup={handleEditAvatarClick}
@@ -140,12 +129,7 @@ function App() {
           Сохранить
         </button>
       </PopupWithForm>
-      <ImagePopup
-        name={popupImagName}
-        offPopup={handleCardClick}
-        link={popupImagLink}
-        isOpen={selectedCard ? 'popup popup_opened' : 'popup'}
-      />
+      <ImagePopup offPopup={() => handleCardClick({})} isOpen={selectedCard} />
     </div>
   );
 }

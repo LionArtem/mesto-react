@@ -4,7 +4,7 @@ function Card(props) {
     <div className="element">
       <button className="element__delete" type="button"></button>
       <img
-        onClick={() => onCardClick(card.link, card.name)}
+        onClick={() => onCardClick(card)}
         className="element__foto"
         src={card.link}
         alt="замок"

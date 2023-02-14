@@ -2,7 +2,7 @@ function PopupWithForm(props) {
   const { title, isOpen, avatar, children, offPopup } = props;
 
   return (
-    <div className={isOpen}>
+    <div className={isOpen ? 'popup  popup_opened' : 'popup'}>
       <div className="popup__container">
         <button
           className="button-close button-close_tepe_elements"

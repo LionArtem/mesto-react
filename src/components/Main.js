@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from './Card';
 
-import { api } from './utils/Api';
+import { api } from '../utils/Api';
 
 function Main(props) {
   const { onEditProfile, onAddPlace, onEditAvatar, onCardClick } = props;
@@ -64,7 +64,7 @@ function Main(props) {
       </section>
       <section className="elements">
         {cards.map((card) => (
-          <Card key={card._id} card={card} onCardClick={onCardClick}/>
+          <Card key={card._id} card={card} onCardClick={onCardClick} />
         ))}
       </section>
     </main>
