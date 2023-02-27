@@ -28,6 +28,7 @@ class Api {
   }
 
   addServerUserAvatar(url) {
+    console.log(url);
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this.headers,

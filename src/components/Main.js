@@ -1,46 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Card from './Card';
 
-import { api } from '../utils/Api';
+//import { api } from '../utils/Api';
+
+import CurrentUserContext from '../contexts/CurrentUserContext';
 
 function Main(props) {
+  const { currentUser,cards } = useContext(CurrentUserContext);
+  
+
   const { onEditProfile, onAddPlace, onEditAvatar, onCardClick } = props;
-
-  const [userName, setUserName] = React.useState('');
-  const [userDescription, setUserDescription] = React.useState('');
-  const [userAvatar, setUserAvatar] = React.useState('');
-  const [cards, setCards] = React.useState([]);
-
-  React.useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
-      // тут деструктурируете ответ от сервера, чтобы было понятнее, что пришло
-      .then(([userData, cardsData]) => {
-        // console.log(cardsData);
-        // тут установка данных пользователя
-        setUserAvatar(userData.avatar);
-        setUserName(userData.name);
-        setUserDescription(userData.about);
-        // и тут отрисовка карточек
-        setCards(cardsData);
-      })
-      .catch((err) => {
-        // тут ловим ошибку
-        console.log(err);
-        alert(`Ошибка: ${err}`);
-      });
-  }, []);
 
   return (
     <main className="content">
       <section className="profile">
         <div onClick={onEditAvatar} className="profile__conteiner">
           <div className="profile__pencil-avatar"></div>
-          <img className="profile__avatar" src={userAvatar} alt="аватар" />
+          <img className="profile__avatar" src={currentUser.avatar} alt="аватар" />
         </div>
         <div className="profile__info">
           <div className="profile__info-li">
-            <h1 className="profile__title">{userName}</h1>
-            <h2 className="profile__subtitl">{userDescription}</h2>
+            <h1 className="profile__title">{currentUser.name}</h1>
+            <h2 className="profile__subtitl">{currentUser.about}</h2>
           </div>
           <button
             onClick={onEditProfile}
