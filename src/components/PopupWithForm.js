@@ -1,7 +1,8 @@
 import { closeOverley } from '../utils/utils';
 
 function PopupWithForm(props) {
-  const { title, isOpen, avatar, children, onClose, onSubmit } = props;
+  const { title, isOpen, name, children, onClose, onSubmit, buttonText } =
+    props;
 
   return (
     <div
@@ -17,10 +18,13 @@ function PopupWithForm(props) {
         <p className="popup__edit-profile">{title}</p>
         <form
           onSubmit={onSubmit}
-          className={`popup__form popup__form_type_${avatar}`}
-          name={avatar}
+          className={`popup__form popup__form_type_${name}`}
+          name={name}
         >
           {children}
+          <button className="popup__save-button" type="submit">
+            {buttonText}
+          </button>
         </form>
       </div>
     </div>

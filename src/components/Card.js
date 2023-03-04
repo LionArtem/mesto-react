@@ -18,7 +18,7 @@ function Card(props) {
           className="element__delete"
           onClick={() => handleCardDelete(card)}
           type="button"
-        ></button>
+        />
       )}
       <img
         onClick={() => onCardClick(card)}

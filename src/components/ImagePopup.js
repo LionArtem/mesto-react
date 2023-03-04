@@ -1,10 +1,13 @@
-import {closeOverley} from '../utils/utils'
+import { closeOverley } from '../utils/utils';
 
 function ImagePopup(props) {
   const { isOpen, onClose } = props;
 
   return (
-    <div onClick={(evt) => closeOverley(evt,onClose)} className={isOpen.name ? 'popup popup_opened' : 'popup'}>
+    <div
+      onClick={(evt) => closeOverley(evt, onClose)}
+      className={isOpen.name ? 'popup popup_opened' : 'popup'}
+    >
       <div className="popup-foto__conteiner">
         <button
           onClick={onClose}

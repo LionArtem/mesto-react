@@ -1,28 +1,37 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
+import { useForm } from '../hooks/useForm';
 
 export default function AddPlacePopup({ onClose, isOpen, onUpdateUser }) {
-  const [nameFoto, setNameFoto] = React.useState('');
-  const [link, setlink] = React.useState('');
+  const { values, handleChange, setValues } = useForm({
+    nameFoto: '',
+    link: '',
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onUpdateUser({
-      nameFoto,
-      link,
-    });
+    onUpdateUser(values);
   };
+
+  React.useEffect(() => {
+    setValues({
+      nameFoto: '',
+      link: '',
+    });
+  }, [isOpen]);
+
   return (
     <PopupWithForm
       onSubmit={handleSubmit}
       onClose={onClose}
       isOpen={isOpen}
+      buttonText='добавить'
       title="Новое место"
       name="elements"
     >
       <input
-        value={nameFoto}
-        onChange={(e) => setNameFoto(e.target.value)}
+        value={values.nameFoto}
+        onChange={(e) => handleChange(e)}
         name="nameFoto"
         id="title-input"
         className="popup__info-text popup__info-text_type_title"
@@ -34,8 +43,8 @@ export default function AddPlacePopup({ onClose, isOpen, onUpdateUser }) {
       />
       <p className="title-input-error popup__input-error"></p>
       <input
-        value={link}
-        onChange={(e) => setlink(e.target.value)}
+        value={values.link}
+        onChange={(e) => handleChange(e)}
         name="link"
         id="fotolink-input"
         className="popup__info-text popup__info-text_type_fotolink"
@@ -44,12 +53,6 @@ export default function AddPlacePopup({ onClose, isOpen, onUpdateUser }) {
         required
       />
       <p className="fotolink-input-error popup__input-error"></p>
-      <button
-        className="popup__save-button popup__save-button_add-foto"
-        type="submit"
-      >
-        Создать
-      </button>
     </PopupWithForm>
   );
 }

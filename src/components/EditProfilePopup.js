@@ -11,7 +11,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   React.useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
-  }, [currentUser]);
+  }, [currentUser, isOpen]);
 
   function handleSubmit(e) {
     // Запрещаем браузеру переходить по адресу формы
@@ -31,10 +31,11 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       isOpen={isOpen}
       title="Редактировать профиль"
       name="profile"
+      buttonText="сохранить"
     >
       <input
+        value={name || ''}
         onChange={(e) => setName(e.target.value)}
-        value={name}
         name="name"
         id="name-input"
         className="popup__info-text popup__info-text_type_name"
@@ -47,7 +48,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       <p className="name-input-error popup__input-error"></p>
       <input
         onChange={(e) => setDescription(e.target.value)}
-        value={description}
+        value={description || ''}
         name="job"
         id="job-input"
         className="popup__info-text popup__info-text_type_job"
@@ -58,9 +59,6 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
         required
       />
       <p className="job-input-error popup__input-error"></p>
-      <button className="popup__save-button" type="submit">
-        Сохранить
-      </button>
     </PopupWithForm>
   );
 }

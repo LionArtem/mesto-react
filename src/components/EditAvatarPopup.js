@@ -16,6 +16,7 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
       title="Обновить аватар"
       name="avatar"
       onClose={onClose}
+      buttonText='изменить'
     >
       <input
         ref={avatar}
@@ -27,12 +28,6 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
         required
       />
       <p className="fotoAvatarlink-input-error popup__input-error"></p>
-      <button
-        className="popup__save-button popup__save-button_add-foto"
-        type="submit"
-      >
-        Сохранить
-      </button>
     </PopupWithForm>
   );
 }
